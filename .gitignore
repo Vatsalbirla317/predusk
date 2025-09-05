@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+*.env
+.env
+.venv/
+venv/
+predusk_new/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Test
+coverage/
+htmlcov/
+.tox/
+
+# Other
+*.bak
+*.swp
+*.swo
+
+# Node
+node_modules/
+
+# Static
+static/js/
