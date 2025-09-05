@@ -83,15 +83,30 @@ Then open your browser to http://localhost:8000
 
 ## Deployment
 
-The application can be deployed to any platform that supports Python/ASGI applications. Here's an example for deploying to Render:
 
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Set the following environment variables:
-   - `PYTHON_VERSION`: 3.9+
-   - `INSTALL_COMMAND`: pip install -r requirements.txt
-   - `START_COMMAND`: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-4. Add your environment variables from `.env`
+### Deploying to Vercel (Free Hosting)
+
+This project is ready for serverless deployment on Vercel:
+
+1. Install the [Vercel CLI](https://vercel.com/docs/cli):
+   ```bash
+   npm install -g vercel
+   ```
+2. Log in to Vercel:
+   ```bash
+   vercel login
+   ```
+3. Deploy:
+   ```bash
+   vercel --prod
+   ```
+4. Set your environment variables in the Vercel dashboard (Settings > Environment Variables) using `.env.example` as a reference.
+
+The FastAPI app is exposed as a serverless function via `api/main.py`.
+
+---
+
+You can also deploy to other platforms (Render, Railway, HF Spaces, etc.) that support Python/ASGI applications. See their docs for details.
 
 ## Usage
 
@@ -105,6 +120,28 @@ The application can be deployed to any platform that supports Python/ASGI applic
 
 3. **View Sources**:
    - Click on citation numbers (e.g., [1]) to view the source text
+
+## Quick Start
+
+1. Clone the repo and set up your environment as above.
+2. Add your API keys to `.env` (see `.env.example`).
+3. Run locally with `uvicorn app.main:app --reload` or deploy to Vercel.
+4. Upload documents and start chatting!
+
+## Architecture Diagram
+
+See the diagram in the Architecture section above (uses Pinecone, Cohere, Groq, FastAPI, etc.).
+
+## Chunking Params, Retriever/Reranker Settings, Providers
+
+- Chunk size, overlap, and model settings are configurable via environment variables (see above).
+- Providers used: Pinecone (vector DB), Cohere (reranker), Groq (LLM), Sentence Transformers (embeddings).
+
+## Remarks
+
+- Free hosting providers (like Vercel) may have cold starts, memory, or execution time limits.
+- If you hit provider limits (e.g., Pinecone free tier, Cohere rate limits), consider upgrading or switching providers.
+- Keep API keys server-side and never commit secrets.
 
 ## Performance Considerations
 
